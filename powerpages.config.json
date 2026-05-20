@@ -1,0 +1,7 @@
+{
+  "$schema": "https://www.schemastore.org/powerpages.config.json",
+  "siteName": "My Lib",
+  "compiledPath": "dist",
+  "defaultLandingPage": "index.html"
+}
+
