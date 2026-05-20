@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import Catalog from './pages/Catalog'
 import Account from './pages/Account'
+import Contact from './pages/Contact'
 import About from './pages/About'
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </Layout>
