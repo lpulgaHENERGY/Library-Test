@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import SearchBar from '../components/SearchBar'
 import CatalogCard from '../components/CatalogCard'
 

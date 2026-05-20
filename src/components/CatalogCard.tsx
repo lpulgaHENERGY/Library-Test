@@ -1,5 +1,3 @@
-import React from 'react'
-
 type Item = { id: string; title: string; author: string; imgId: string; excerpt: string }
 
 export default function CatalogCard({ item }: { item: Item }) {
