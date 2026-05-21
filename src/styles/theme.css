@@ -24,3 +24,7 @@ a{color:var(--color-primary)}
 button{font-family:var(--font-body)}
 /* Utility */
 .container{max-width:1100px;margin:0 auto;padding:24px}
+.active {
+  color: var(--color-primary);
+  font-weight: bold;
+}

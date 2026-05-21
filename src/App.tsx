@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Catalog from './pages/Catalog'
@@ -9,13 +9,13 @@ import About from './pages/About'
 export default function App() {
   return (
     <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/catalog" component={Catalog} />
+        <Route exact path="/account" component={Account} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/about" component={About} />
+      </Switch>
     </Layout>
   )
 }
