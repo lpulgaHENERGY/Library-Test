@@ -1,11 +1,20 @@
-import AccountForm from '../components/AccountForm'
+import React from 'react';
+import AccountForm from '../components/AccountForm';
 
-export default function Account() {
+const Account: React.FC = () => {
   return (
-    <div className="container" style={{ paddingTop: 24 }}>
-      <h1>Account</h1>
-      <p style={{ color: 'var(--color-text-muted)', marginBottom: 18 }}>Sign in to access your saved items and account settings.</p>
-      <AccountForm />
-    </div>
-  )
-}
+    <main className="container" style={{ paddingTop: 24 }}>
+      <section>
+        <h1>Account</h1>
+        <p className="text-muted" role="status">
+          Sign in to access your saved items and account settings.
+        </p>
+      </section>
+      <section>
+        <AccountForm />
+      </section>
+    </main>
+  );
+};
+
+export default Account;

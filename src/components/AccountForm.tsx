@@ -24,11 +24,11 @@ export default function AccountForm() {
 
   return (
     <form onSubmit={submit} style={{ maxWidth: 420 }} aria-label="Sign in to your account">
-      <div style={{ marginBottom: 12 }}>
+      <div style={{ marginBottom: 16 }}>
         <label htmlFor="email" style={{ display: 'block', fontSize: 14, marginBottom: 6 }}>Email</label>
         <input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} style={{ width: '100%', padding: '10px 12px', borderRadius: 8, border: '1px solid var(--color-border)' }} aria-required="true" />
       </div>
-      <div style={{ marginBottom: 12 }}>
+      <div style={{ marginBottom: 16 }}>
         <label htmlFor="password" style={{ display: 'block', fontSize: 14, marginBottom: 6 }}>Password</label>
         <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} style={{ width: '100%', padding: '10px 12px', borderRadius: 8, border: '1px solid var(--color-border)' }} aria-required="true" />
       </div>

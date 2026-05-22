@@ -31,7 +31,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={submit} aria-label="Contact form" style={{ maxWidth: 640 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
         <div>
           <label htmlFor="contact-name" style={{ display: 'block', marginBottom: 6 }}>Name</label>
           <input id="contact-name" value={name} onChange={e => setName(e.target.value)} style={{ width: '100%', padding: 10, borderRadius: 8, border: '1px solid var(--color-border)' }} aria-required="true" />

@@ -315,7 +315,7 @@ export default function Home() {
       }, 500))
     }
     timeouts.push(window.setTimeout(() => showTip(), 3500))
-    intervals.push(window.setInterval(showTip, 12000))
+    intervals.push(window.setInterval(showTip, 12000))                                         
 
     return () => {
       inputBannerClose?.removeEventListener('click', dismissInputBanner)
@@ -326,72 +326,19 @@ export default function Home() {
 
   return (
     <>
-      <style>{loadingCSS}</style>
-      <div className="loading-wrapper">
-        <div className="ambient" />
-        <div className="grid-overlay" />
-        <div className="scanline" />
-        <div className="particles" id="particles" />
-        <div className="connector-lines" id="connectors" />
+      <style>{loadingCSS}</style>  
 
-        <div className="input-banner" id="inputBanner" hidden>
-          <span className="input-banner-icon">{ '⚠️' }</span>
-          <div className="input-banner-text">
-            <b>Waiting for your input</b>
-            <small id="inputBannerPrompt">Please check your terminal to respond.</small>
+      <div>
+        <h1>Welcome to My Lib!</h1>
+        {location.pathname !== '/account' && (
+          <div>
+            <p>Discover a vast collection of books, including fiction, non-fiction, and more.</p>
+            <p><a href="/account">Sign in</a> to access your account and save your favorite books.</p>
+            <p><a href="/catalog">Browse our catalog</a> to find what you're looking for.</p>
+            <p><a href="/contact">Contact us</a> if you have any questions or need support.</p>
           </div>
-          <button type="button" className="input-banner-close" id="inputBannerClose" aria-label="Dismiss notification">{'\u00d7'}</button>
-        </div>
-
-        <div className="center-stage" id="centerStage">
-          <div className="orbit-system">
-            <div className="core-glow" />
-            <div className="core-shape">
-            </div>
-            <div className="orbit-ring" />
-            <div className="orbit-ring" />
-            <div className="orbit-ring" />
-            <div className="orbit-dot" />
-            <div className="orbit-dot" />
-            <div className="orbit-dot" />
-          </div>
-
-          <div className="text-content">
-            <div className="brand-title">Power Pages</div>
-            <div className="main-heading" id="mainHeading">Building My Lib</div>
-
-            <div className="status-area" id="statusArea" />
-
-            <div className="progress-container">
-              <div className="progress-track" id="progressTrack">
-                <div className="progress-fill" />
-              </div>
-              <span className="progress-label-text" id="progressLabel">Initializing...</span>
-            </div>
-          </div>
-
-          <div className="feature-cards">
-            <div className="feature-card" data-delay="0">
-              <span className="feature-card-icon">{ '\uD83D\uDD12' }</span>
-              <span className="feature-card-label">Enterprise-grade security</span>
-            </div>
-            <div className="feature-card" data-delay="400">
-              <span className="feature-card-icon">{ '\u26A1' }</span>
-              <span className="feature-card-label">Lightning-fast performance</span>
-            </div>
-            <div className="feature-card" data-delay="800">
-              <span className="feature-card-icon">{ '\uD83C\uDF10' }</span>
-              <span className="feature-card-label">Ready to scale globally</span>
-            </div>
-          </div>
-
-          <div className="tip-area">
-            <div className="tip-label">Did you know</div>
-            <div className="tip-text" id="tipText" />
-          </div>
-        </div>
+        )}
       </div>
     </>
-  )
-}
-
+  );
+};
