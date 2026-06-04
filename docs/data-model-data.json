@@ -1,0 +1,90 @@
+{
+  "SITE_NAME": "My Lib",
+  "SUMMARY": "The My Lib Power Pages site requires exactly two custom tables: lpulga_libraryitem (catalog entries) and lpulga_webmessage (contact form submissions). Both were set up in a prior agent run and their schemas fully match the current site code. The standard contact table is reused as-is for portal authentication and the existing 1:N contact→lpulga_webmessage relationship is preserved. No new tables or columns are required.",
+  "PREFIX": "lpulga_",
+  "TABLES_DATA": [
+    {
+      "id": "lpulga_libraryitem",
+      "logicalName": "lpulga_libraryitem",
+      "displayName": "Library Item",
+      "status": "reused",
+      "rationale": "Stores the catalog entries displayed on the /catalog page and in CatalogCard components. All five columns in the manifest match the Item TypeScript type used in Catalog.tsx and CatalogCard.tsx exactly: lpulga_name→title, lpulga_author→author, lpulga_excerpt→excerpt, lpulga_imgid→Unsplash photo ID, lpulga_externalid→URL-safe routing key (used by the /catalog/item/${id} link in CatalogCard). No new columns are evidenced by the current code. The Catalog page currently uses a hardcoded ITEMS array — this table is the intended live data source when Web API calls are wired in.",
+      "columns": [
+        { "logicalName": "lpulga_libraryitemid", "displayName": "Library Item ID", "type": "Uniqueidentifier", "required": true, "key": "PK", "isNew": false },
+        { "logicalName": "lpulga_name",          "displayName": "Title",           "type": "SingleLine.Text", "required": true,  "key": null, "isNew": false },
+        { "logicalName": "lpulga_author",        "displayName": "Author",          "type": "SingleLine.Text", "required": false, "key": null, "isNew": false },
+        { "logicalName": "lpulga_excerpt",       "displayName": "Excerpt",         "type": "MultiLine.Text",  "required": false, "key": null, "isNew": false },
+        { "logicalName": "lpulga_imgid",         "displayName": "Image ID",        "type": "SingleLine.Text", "required": false, "key": null, "isNew": false },
+        { "logicalName": "lpulga_externalid",    "displayName": "External ID",     "type": "SingleLine.Text", "required": false, "key": null, "isNew": false }
+      ],
+      "relationships": [
+        { "description": "Read by anonymous and authenticated users via the /catalog page (no foreign key — standalone catalog entity)", "relatedTable": null, "type": null, "foreignKey": null }
+      ]
+    },
+    {
+      "id": "lpulga_webmessage",
+      "logicalName": "lpulga_webmessage",
+      "displayName": "Web Message",
+      "status": "reused",
+      "rationale": "Captures contact form submissions from the /contact page. The three user-facing columns (lpulga_name, lpulga_email, lpulga_message) map exactly to the three controlled inputs in ContactForm.tsx. The lookup column lpulga_contactid links an authenticated portal user's Contact record to their submission — this 1:N relationship (contact→lpulga_webmessage) was established during the initial setup. ContactForm.tsx currently uses a setTimeout placeholder; when the Dataverse Web API call is implemented, it will POST to this table.",
+      "columns": [
+        { "logicalName": "lpulga_webmessageid", "displayName": "Web Message ID", "type": "Uniqueidentifier", "required": true,  "key": "PK", "isNew": false },
+        { "logicalName": "lpulga_name",         "displayName": "Name",           "type": "SingleLine.Text", "required": true,  "key": null, "isNew": false },
+        { "logicalName": "lpulga_email",        "displayName": "Email",          "type": "SingleLine.Text", "required": true,  "key": null, "isNew": false },
+        { "logicalName": "lpulga_message",      "displayName": "Message",        "type": "MultiLine.Text",  "required": true,  "key": null, "isNew": false },
+        { "logicalName": "lpulga_contactid",    "displayName": "Contact",        "type": "Lookup",          "required": false, "key": "FK", "isNew": false }
+      ],
+      "relationships": [
+        { "description": "Many Web Messages submitted by one Contact (authenticated user scenario) via lpulga_contactid lookup", "relatedTable": "contact", "type": "N:1", "foreignKey": "lpulga_contactid" }
+      ]
+    },
+    {
+      "id": "contact",
+      "logicalName": "contact",
+      "displayName": "Contact",
+      "status": "reused",
+      "rationale": "Standard Dataverse table used by Power Pages as the portal user identity record. The /account page contains AccountForm.tsx which is a sign-in form (email + password fields only) — credentials are managed entirely by Power Pages native authentication, not stored as custom columns. The /profile page in .powerpages-site/web-pages/profile/ is the standard Power Pages profile page backed by this table (hiddenfromsitemap: true, confirming it is portal-internal). The contact table is also the parent in the 1:N contact→lpulga_webmessage relationship. No custom columns need to be added.",
+      "columns": [
+        { "logicalName": "contactid",       "displayName": "Contact ID", "type": "Uniqueidentifier", "required": true,  "key": "PK", "isNew": false },
+        { "logicalName": "fullname",        "displayName": "Full Name",  "type": "SingleLine.Text",  "required": false, "key": null, "isNew": false },
+        { "logicalName": "emailaddress1",   "displayName": "Email",      "type": "SingleLine.Text",  "required": false, "key": null, "isNew": false }
+      ],
+      "relationships": [
+        { "description": "One Contact has many Web Messages (authenticated submissions) via lpulga_contactid on lpulga_webmessage", "relatedTable": "lpulga_webmessage", "type": "1:N", "foreignKey": "lpulga_contactid" }
+      ]
+    }
+  ],
+  "RATIONALE_DATA": [
+    {
+      "icon": "✅",
+      "title": "Existing manifest is complete — no gaps found",
+      "desc": "Every field rendered by the current React components maps to a column that already exists in the manifest. Catalog.tsx's Item type (title, author, imgId, excerpt) maps directly to lpulga_libraryitem. ContactForm.tsx's three inputs (name, email, message) map directly to lpulga_webmessage. No columns are missing."
+    },
+    {
+      "icon": "♻️",
+      "title": "Standard Contact table handles all auth/profile needs",
+      "desc": "AccountForm.tsx is a sign-in form only — email and password are Portal authentication concerns, not Dataverse columns. Power Pages manages portal user identity via the standard contact table natively. The .powerpages-site/web-pages/profile/ page (hiddenfromsitemap: true) is the standard portal profile page — no custom profile table or additional contact columns are needed."
+    },
+    {
+      "icon": "🔗",
+      "title": "Existing contact→webmessage relationship is sound",
+      "desc": "The 1:N relationship (contact → lpulga_webmessage via Lpulga_ContactId lookup) established during initial setup is architecturally correct. It allows authenticated users' contact submissions to be linked to their Dataverse Contact record, enabling operators to see all messages from a given user. Anonymous submissions leave the lookup null — which is fine since lpulga_contactid is not required."
+    },
+    {
+      "icon": "🔮",
+      "title": "Future: item detail routing already accommodated",
+      "desc": "CatalogCard.tsx links to /catalog/item/${item.id} but no App.tsx route or detail page component exists yet. When this is built, lpulga_externalid on lpulga_libraryitem is the intended URL-safe identifier (no schema change needed — the column already exists and was specifically designed for this purpose)."
+    },
+    {
+      "icon": "⚠️",
+      "title": "Live Dataverse OData verification was skipped",
+      "desc": "Shell script execution (verify-dataverse-access.js / dataverse-request.js) is not available in this agent session. This model is based on .datamodel-manifest.json and datamodel-setup-summary.txt. The setup summary notes 'Final OData verification still returned HTTP 400' after creation. Run node scripts/validate-datamodel.js to confirm the tables actually exist in the pulgasandbox environment before attempting Web API integration."
+    },
+    {
+      "icon": "🔐",
+      "title": "Web API table permissions still need configuring",
+      "desc": "For the catalog page to read from lpulga_libraryitem and the contact form to write to lpulga_webmessage via the Power Pages Web API, Table Permissions must be set in the portal: lpulga_libraryitem needs Global read for Anonymous Users; lpulga_webmessage needs Create for Authenticated Users (scoped to Contact). These are portal-layer configurations, not schema changes."
+    }
+  ],
+  "ER_DIAGRAM": "erDiagram\n    CONTACT[\"contact (Contact)\"] {\n        guid   contactid      PK\n        string fullname\n        string emailaddress1\n    }\n    LPULGA_WEBMESSAGE[\"lpulga_webmessage (Web Message)\"] {\n        guid   lpulga_webmessageid  PK\n        guid   lpulga_contactid     FK\n        string lpulga_name\n        string lpulga_email\n        string lpulga_message\n    }\n    LPULGA_LIBRARYITEM[\"lpulga_libraryitem (Library Item)\"] {\n        guid   lpulga_libraryitemid  PK\n        string lpulga_name\n        string lpulga_author\n        string lpulga_excerpt\n        string lpulga_imgid\n        string lpulga_externalid\n    }\n    CONTACT ||--o{ LPULGA_WEBMESSAGE : \"submits\""
+}

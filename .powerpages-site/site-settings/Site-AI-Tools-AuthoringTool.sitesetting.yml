@@ -1,0 +1,4 @@
+description: Records which AI authoring tool was used
+id: 07957a01-836e-4442-883f-bc0ad7ef67af
+name: Site/AI/Tools/AuthoringTool
+value: GitHubCopilot

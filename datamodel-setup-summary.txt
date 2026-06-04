@@ -1,0 +1,21 @@
+Datamodel Setup Summary
+
+Environment: https://pulgasandbox.crm4.dynamics.com/
+Publisher prefix: lpulga
+
+Tables created (requested):
+- lpulga_webmessage (Web Message)
+  Columns: lpulga_name (primary), lpulga_email, lpulga_message
+- lpulga_libraryitem (Library Item)
+  Columns: lpulga_name (primary), lpulga_author, lpulga_excerpt, lpulga_imgid, lpulga_externalid
+
+Relationships created:
+- contact -> lpulga_webmessage (1:N lookup: Lpulga_ContactId)
+
+Notes:
+- Direct OData verification queries returned HTTP 400 in several steps; publishing reported OK. Final OData verification still returned 400. The manifest file was written: .datamodel-manifest.json
+- If you want a full audit, run the validation script scripts/validate-datamodel.js locally after ensuring az/pac auth tokens are available for the CLI.
+
+Next steps:
+- Review entities in the Power Pages maker portal
+- Optionally run validation: node scripts/validate-datamodel.js

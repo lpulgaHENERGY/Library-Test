@@ -1,6 +1,6 @@
-type Item = { id: string; title: string; author: string; imgId: string; excerpt: string }
+import type { LibraryItem } from '../types/libraryItem'
 
-export default function CatalogCard({ item }: { item: Item }) {
+export default function CatalogCard({ item }: { item: LibraryItem }) {
   const imageUrl = (id: string, w = 720, h = 360) => `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&auto=format&ixlib=rb-4.0.3&q=80`
 
   return (

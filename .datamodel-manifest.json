@@ -1,0 +1,27 @@
+{
+  "environmentUrl": "https://pulgasandbox.crm4.dynamics.com/",
+  "tables": [
+    {
+      "logicalName": "lpulga_webmessage",
+      "displayName": "Web Message",
+      "status": "reused",
+      "columns": [
+        { "logicalName": "lpulga_name", "type": "String" },
+        { "logicalName": "lpulga_email", "type": "String" },
+        { "logicalName": "lpulga_message", "type": "Memo" }
+      ]
+    },
+    {
+      "logicalName": "lpulga_libraryitem",
+      "displayName": "Library Item",
+      "status": "reused",
+      "columns": [
+        { "logicalName": "lpulga_name", "type": "String" },
+        { "logicalName": "lpulga_author", "type": "String" },
+        { "logicalName": "lpulga_excerpt", "type": "Memo" },
+        { "logicalName": "lpulga_imgid", "type": "String" },
+        { "logicalName": "lpulga_externalid", "type": "String" }
+      ]
+    }
+  ]
+}
