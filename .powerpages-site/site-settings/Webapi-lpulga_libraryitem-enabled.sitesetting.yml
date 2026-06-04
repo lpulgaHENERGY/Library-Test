@@ -1,0 +1,4 @@
+description: Enable Web API access for lpulga_libraryitem table
+id: 6c437755-2398-49f8-a67b-cc787ffbc83b
+name: Webapi/lpulga_libraryitem/enabled
+value: true

@@ -1,0 +1,13 @@
+adx_entitypermission_webrole:
+- 79e34d6b-abd5-4b88-a96d-4b6e935cc5d1
+- 9838ff9a-e872-48c0-97e5-13e7b2d924ba
+append: false
+appendto: false
+create: true
+delete: false
+entitylogicalname: lpulga_webmessage
+entityname: Web Message - Submit
+id: dfd308e9-04a8-403b-a6a6-62c5ded661fa
+read: false
+scope: 756150000
+write: false

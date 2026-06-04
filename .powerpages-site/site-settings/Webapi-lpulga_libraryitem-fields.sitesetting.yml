@@ -1,0 +1,4 @@
+description: Allowed fields for lpulga_libraryitem Web API access
+id: bdc2247e-2ed9-4756-be70-2e596f818422
+name: Webapi/lpulga_libraryitem/fields
+value: lpulga_author,lpulga_excerpt,lpulga_externalid,lpulga_imgid,lpulga_libraryitemid,lpulga_name

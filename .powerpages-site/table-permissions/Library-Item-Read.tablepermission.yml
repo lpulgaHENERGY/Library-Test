@@ -1,0 +1,13 @@
+adx_entitypermission_webrole:
+- 79e34d6b-abd5-4b88-a96d-4b6e935cc5d1
+- 9838ff9a-e872-48c0-97e5-13e7b2d924ba
+append: false
+appendto: false
+create: false
+delete: false
+entitylogicalname: lpulga_libraryitem
+entityname: Library Item - Read
+id: e780e476-11ed-4ea9-9a75-6457a80949c9
+read: true
+scope: 756150000
+write: false

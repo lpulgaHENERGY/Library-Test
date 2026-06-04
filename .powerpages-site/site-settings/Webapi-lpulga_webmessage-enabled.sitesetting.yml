@@ -1,0 +1,4 @@
+description: Enable Web API access for lpulga_webmessage table
+id: 466e2d41-1806-40c8-9245-ef4cc8dbd7da
+name: Webapi/lpulga_webmessage/enabled
+value: true

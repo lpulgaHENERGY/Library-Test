@@ -1,0 +1,4 @@
+description: Allowed fields for lpulga_webmessage Web API access
+id: a9335881-d2df-46a3-b305-0b17f150a541
+name: Webapi/lpulga_webmessage/fields
+value: lpulga_email,lpulga_message,lpulga_name

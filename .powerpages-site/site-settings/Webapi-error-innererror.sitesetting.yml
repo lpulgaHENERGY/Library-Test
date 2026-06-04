@@ -1,0 +1,4 @@
+description: Enable detailed error messages for debugging
+id: cc7ddf0b-42df-401e-a328-c52df48c1e07
+name: Webapi/error/innererror
+value: true
